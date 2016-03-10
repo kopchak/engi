@@ -1,0 +1,43 @@
+<h2>Checkout</h2>
+<h3>Address</h3>
+<div style="float:left; width: 200px;">
+  <h4>Billing Address</h4>
+  <%= simple_form_for @order, url: checkouts_update_address_path, method: :patch do |m| %>
+    <%= m.simple_fields_for :billing_address, include_hidden: false do |f| %>
+      <%= f.input :firstname, label: false, placeholder: 'First name' %>
+      <%= f.input :lastname, label: false, placeholder: 'Last name' %>
+      <%= f.input :street_address, label: false, placeholder: 'Street address' %>
+      <%= f.input :city, label: false, placeholder: 'City' %>
+      <%= f.country_select("country", {selected: "US"}, {style: 'width: 173px'}) %>
+      <%= f.input :zipcode, label: false, as: :integer, placeholder: 'Zipcode' %>
+      <%= f.input :phone, label: false, as: :integer, placeholder: 'Phone number' %>
+    <% end %>
+    <%= m.submit 'Save' %>
+</div>
+
+<div style="float:left; width: 200px;">
+    <h4>Shipping Address</h4>
+    <%= m.simple_fields_for :shipping_address do |f| %>
+      <%= f.text_field :firstname, placeholder: 'First name' %>
+      <%= f.text_field :lastname, placeholder: 'Last name' %>
+      <%= f.text_field :street_address, placeholder: 'Street address' %>
+      <%= f.text_field :city, placeholder: 'City' %>
+      <%= f.country_select("country", {selected: "US"}, {style: 'width: 173px'}) %>
+      <%= f.number_field :zipcode, placeholder: 'Zipcode' %>
+      <%= f.number_field :phone, placeholder: 'Phone number' %>
+    <% end %>
+    <%= label_tag 'use_billing_address', 'Use billing address' %>
+    <%= check_box_tag 'use_billing_address', true, true %>
+  <% end %>
+</div>
+
+<div style="float:left; width: 200px;">
+  <h4>Order summary</h4>
+  <h5>Item total:<%= number_to_currency(@order.items_price) %></h5>
+  <% if @order.discount %>
+    <h5>Discount:<%= number_to_currency(@order.discount.amount) %></h5>
+  <% end %>
+  <h5>Order total:<%= number_to_currency(@order.total_price) %></h5>
+</div>
+
+

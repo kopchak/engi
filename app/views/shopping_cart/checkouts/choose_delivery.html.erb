@@ -1,0 +1,25 @@
+<h2>Checkout</h2>
+<div>
+  <%= link_to 'Address', checkouts_edit_address_path %>
+</div>
+<div style="float:left; width: 200px;">
+  <h3>Delivery</h3>
+  <%= form_for @order, url: checkouts_set_delivery_path, method: :patch do |f| %>
+    <% @deliveries.each do |delivery| %>
+    <div>
+      <%= f.radio_button :delivery_id, delivery.id, :checked => (delivery == @order.delivery || delivery == @deliveries.first) %>
+      <%= f.label :delivery_id, "#{delivery.title} #{number_to_currency(delivery.price)}" %>
+    </div>
+    <% end %>
+    <%= f.submit 'Save '%>
+  <% end %>
+</div>
+<div style="float:left; width: 200px;">
+  <h3>Order summary</h3>
+  <h5>Item total:<%= number_to_currency(@order.items_price) %></h5>
+  <h5>Shipping:<%= number_to_currency(@delivery.price) %></h5>
+  <% if @order.discount %>
+    <h5>Discount:<%= number_to_currency(@order.discount.amount) %></h5>
+  <% end %>
+  <h5>Order total:<%= number_to_currency(@order.total_price) %></h5>
+</div>

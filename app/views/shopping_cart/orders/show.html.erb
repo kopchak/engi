@@ -1,0 +1,48 @@
+<h1>Order #<%= @order.id %></h1>
+<%= link_to '<< Back to orders', orders_path %>
+<table>
+  <tr>
+    <th>Product name</th>
+    <th>Product price</th>
+    <th>Quantity</th>
+    <th>Item price</th>
+  </tr>
+  <% @order.order_items.each do |order_item| %>
+    <tr id="<%= order_item.id %>" align="center" >
+      <td>
+        <%= order_item.product.title %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.product.price) %>
+      </td>
+      <td>
+        <%= order_item.quantity %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.price) %>
+      </td>
+    </tr>
+  <% end %>
+  <tr align="right">
+    <th colspan="4">
+      Subtotal: <%= number_to_currency(@order.items_price) %>
+    </th>
+  </tr>
+  <tr align="right">
+    <th colspan="4">
+      Shipping: <%= number_to_currency(@order.delivery.price) %>
+    </th>
+  </tr>
+  <% if @order.discount%>
+    <tr align="right">
+      <th colspan="4">
+        Discount: <%= number_to_currency(@order.discount.amount) %>
+      </th>
+    </tr>
+  <% end %>
+  <tr align="right">
+    <th colspan="4">
+      Order total: <%= number_to_currency(@order.total_price) %>
+    </th>
+  </tr>
+</table>

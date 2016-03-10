@@ -1,0 +1,76 @@
+<h2>Checkout</h2>
+<div>
+  <%= link_to 'Address', checkouts_edit_address_path %>
+  <%= link_to 'Delivery', checkouts_choose_delivery_path %>
+  <%= link_to 'Payment', checkouts_confirm_payment_path %>
+</div>
+<div>
+  <h3>Confirm</h3>
+  <div style="float:left; width: 160px;">
+    <h4>Billing address <%= link_to "(edit)", checkouts_edit_address_path %></h4>
+    <p><%= "#{@billing_address.firstname} #{@billing_address.lastname}" %></p>
+    <p><%= @billing_address.street_address %></p>
+    <p><%= "#{@billing_address.city} #{@billing_address.zipcode}" %></p>
+    <p><%= @billing_address.country %></p>
+    <p>Phone: <%= @billing_address.phone %></p>
+  </div>
+  <div style="float:left; width: 180px;">
+    <h4>Shipping address <%= link_to "(edit)", checkouts_edit_address_path %></h4>
+    <p><%= "#{@shipping_address.firstname} #{@shipping_address.lastname}" %></p>
+    <p><%= @shipping_address.street_address %></p>
+    <p><%= "#{@shipping_address.city} #{@shipping_address.zipcode}" %></p>
+    <p><%= @shipping_address.country %></p>
+    <p>Phone: <%= @shipping_address.phone %></p>
+  </div>
+  <div style="float:left; width: 140px;">
+    <h4>Shipments <%= link_to "(edit)", checkouts_choose_delivery_path %></h4>
+    <p><%= @order.delivery.title %></p>
+  </div>
+  <div style="float:left; width: 160px;">
+    <h4>Credit Card <%= link_to "(edit)", checkouts_confirm_payment_path %></h4>
+    <p>**** **** **** <%= @order.credit_card.number.last(4) %></p>
+    <p><%= @order.credit_card.expiration_month %>/<%= @order.credit_card.expiration_year %></p>
+  </div>
+</div>
+<table style="clear: both;">
+  <tr>
+    <th width="160px">Product name</th>
+    <th width="180px">Product price</th>
+    <th width="140px">Quantity</th>
+    <th width="140px">Item price</th>
+  </tr>
+  <% @order.order_items.each do |order_item| %>
+    <tr id= <%= "#{order_item.id}" %> align="center" >
+      <td>
+        <%= order_item.product.title %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.product.price) %>
+      </td>
+      <td>
+        <%= order_item.quantity %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.price) %>
+      </td>
+    </tr>
+  <% end %>
+  <tr align="right">
+    <th colspan="4" style="padding-right: 34px;">Subtotal: <%= number_to_currency(@order.items_price) %></th>
+  </tr>
+  <tr align="right">
+    <th colspan="4" style="padding-right: 34px;">Shipping: <%= number_to_currency(@order.delivery.price) %></th>
+  </tr>
+  <% if @order.discount %>
+    <tr align="right">
+      <th colspan="4" style="padding-right: 34px;">Discount: <%= number_to_currency(@order.discount) %> </th>
+    </tr>
+  <% end %>
+  <tr align="right">
+    <th colspan="4" style="padding-right: 34px;">Order total: <%= number_to_currency(@order.total_price) %></th>
+  </tr>
+  <tr>
+    <td><%= button_to "Place order", checkouts_confirmation_path, method: :get %></td>
+  </tr>
+</table>
+

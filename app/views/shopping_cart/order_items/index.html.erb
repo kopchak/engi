@@ -1,0 +1,61 @@
+<h1>Cart</h1>
+
+<table>
+  <tr>
+    <th>Product name</th>
+    <th>Product price</th>
+    <th>Quantity</th>
+    <th>Item price</th>
+  </tr>
+  <% @order_items.each do |order_item| %>
+    <tr id="<%= order_item.id %>" align="center" >
+      <td>
+        <%= order_item.product.title %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.product.price) %>
+      </td>
+      <td>
+        <%= simple_form_for order_item, url: order_item_path(order_item), method: :patch do |f| %>
+          <%= f.number_field :quantity, value: order_item.quantity, min: 1, max: 10 %>
+          <%= f.submit 'ok' %>
+        <% end %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.price) %>
+      </td>
+      <td>
+        <%= link_to 'X', order_item_path(order_item), method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr align="right">
+    <th colspan="4">Order total: <%= number_to_currency(@order.items_price) %></th>
+  </tr>
+  <% if @order.discount %>
+    <tr align="right">
+      <th colspan="4">Discount: <%= number_to_currency(@order.discount) %> </th>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td>
+      <%= link_to 'empty_cart', clear_cart_orders_path, method: :delete %>
+    </td>
+    <% unless @order_items.empty? %>
+      <%= simple_form_for @discount, url: add_discount_order_path(@order.id), method: :patch, html: { autocomplete: "off" } do |f| %>
+        <td>
+          <%= f.input :code, label: false, placeholder: 'coupon code', minlength: 6, maxlength: 6, input_html: { style: "width: 80px" } %>
+        </td>
+        <td>
+          <%= f.submit 'UPDATE' %>
+        </td>
+      <% end %>
+    <% end %>
+    <td>
+      <%= link_to 'checkout', checkouts_edit_address_path, method: :get %>
+    </td>
+  </tr>
+</table>
+
