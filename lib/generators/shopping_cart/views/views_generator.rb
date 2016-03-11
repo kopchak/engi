@@ -9,5 +9,9 @@ module ShoppingCart
       directory 'order_items', 'app/views/shopping_cart/order_items'
       directory 'orders', 'app/views/shopping_cart/orders'
     end
+
+    def copy_locale
+      copy_file "../../../config/locales/en.yml", "config/locales/shopping_cart.en.yml"
+    end
   end
 end

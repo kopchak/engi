@@ -8,7 +8,7 @@ module ShoppingCart
     end
 
     def update_address
-      attrs_for_shiping = params[:use_billing_address] ? billing_params : shipping_params
+      attrs_for_shipping = params[:use_billing_address] ? billing_params : shipping_params
       @order.billing_address.assign_attributes(billing_params)
       @order.shipping_address.assign_attributes(attrs_for_shiping)
       if @order.save

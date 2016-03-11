@@ -1,9 +1,9 @@
-<h2>Checkout</h2>
+<h2><%= t('.checkout_title') %></h2>
 <div>
-  <%= link_to 'Address', checkouts_edit_address_path %>
+  <%= link_to t('.address_link'), checkouts_edit_address_path %>
 </div>
 <div style="float:left; width: 200px;">
-  <h3>Delivery</h3>
+  <h3><%= t('.delivery_title') %></h3>
   <%= form_for @order, url: checkouts_set_delivery_path, method: :patch do |f| %>
     <% @deliveries.each do |delivery| %>
     <div>
@@ -11,15 +11,15 @@
       <%= f.label :delivery_id, "#{delivery.title} #{number_to_currency(delivery.price)}" %>
     </div>
     <% end %>
-    <%= f.submit 'Save '%>
+    <%= f.submit t('.save') %>
   <% end %>
 </div>
 <div style="float:left; width: 200px;">
-  <h3>Order summary</h3>
-  <h5>Item total:<%= number_to_currency(@order.items_price) %></h5>
-  <h5>Shipping:<%= number_to_currency(@delivery.price) %></h5>
+  <h3><%= t('.summary_title') %></h3>
+  <h5><%= t('.items_price_info') %><%= number_to_currency(@order.items_price) %></h5>
+  <h5><%= t('.shipping_price_info') %><%= number_to_currency(@delivery.price) %></h5>
   <% if @order.discount %>
-    <h5>Discount:<%= number_to_currency(@order.discount.amount) %></h5>
+    <h5><%= t('.discount_info') %><%= number_to_currency(@order.discount.amount) %></h5>
   <% end %>
-  <h5>Order total:<%= number_to_currency(@order.total_price) %></h5>
+  <h5><%= t('.order_total_info') %><%= number_to_currency(@order.total_price) %></h5>
 </div>

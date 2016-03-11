@@ -1,0 +1,121 @@
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  shopping_cart:
+    order_items:
+      index:
+        cart_title: Cart
+        product_name: Product name
+        product_price: Product price
+        qty: Quantity
+        item_price: Item price
+        ok: ok
+        delete_item: X
+        order_total: "Order total: "
+        discount: "Discount: "
+        empty_cart: Clear cart
+        update: UPDATE
+        checkout: Checkout
+    checkouts:
+      edit_address:
+        checkout_title: Checkout
+        address_title: Address
+        billing_address_title: Billing Address
+        save: Save
+        shipping_address_title: Shipping Address
+        checkbox_use_bil_addr: Use billing address
+        summary_title: Order summary
+        items_price_info: "Item total: "
+        discount_info: "Discount: "
+        order_total_info: 'Order total: '
+      choose_delivery:
+        checkout_title: Checkout
+        address_link: Address
+        delivery_title: Delivery
+        save: Save
+        summary_title: Order summary
+        items_price_info: "Item total: "
+        shipping_price_info: "Shipping: "
+        discount_info: "Discount: "
+        order_total_info: "Order total: "
+      confirm_payment:
+        checkout_title: Checkout
+        address_link: Address
+        delivery_link: Delivery
+        credit_card_title: Credit Card
+        exp_date_title: "Expiration date: "
+        cvv_name_link: "What's cvv"
+        save: Save
+        summary_title: Order summary
+        items_price_info: "Item total: "
+        shipping_price_info: "Shipping: "
+        discount_info: "Discount: "
+        order_total_info: "Order total: "
+      overview:
+        checkout_title: Checkout
+        address_link: Address
+        delivery_link: Delivery
+        credit_card_link: Payment
+        confirm_title: Confirm
+        billing_address_title: Billing address
+        edit_link: "(edit)"
+        p_phone: "Phone: "
+        shipping_address_title: Shipping address
+        shipment_title: Shipments
+        credit_card_title: Credit Card
+        product_name: Product name
+        product_price: Product price
+        qty: Quantity
+        item_price: Item price
+        subtotal_info: "Subtotal: "
+        shipping_price_info: "Shipping: "
+        discount_info: "Discount: "
+        order_total_info: "Order total: "
+        place_order: Place order
+    orders:
+      complete:
+        order_title: Order
+        confirm_title: Confirm
+        billing_address_title: Billing address
+        address_phone: Phone
+        shipping_address_title: Shipping address
+        shipment_title: Shipments
+        credit_card_title: Credit Card
+        product_name: Product name
+        product_price: Product price
+        qty: Quantity
+        item_price: Item price
+        subtotal_info: Subtotal
+        shipping_price_info: Shipping
+        discount_info: Discount
+        order_total_info: Order total
+        back_to_store: Go back to store
+      index:
+        orders_title: Orders
+        in_progress_title: In progress
+        product_name: Product name
+        product_price: Product price
+        qty: Quantity
+        item_price: Item price
+        subtotal_info: Subtotal
+        shipping_price_info: Delivery
+        discount_info: Discount
+        in_queue_title: Waiting for processing
+        column_number: Number
+        column_complete_date: Completed at
+        column_total: Total
+        order_title_link: Order
+        link_view: view
+        in_delivery_title: In delivery
+        delivered_title: Delivered
+      show:
+        order_title: Order
+        link_back_to_orders: Back to orders
+        product_name: Product name
+        product_price: Product price
+        qty: Quantity
+        item_price: Item price
+        subtotal_info: Subtotal
+        shipping_price_info: Shipping
+        discount_info: Discount
+        order_total_info: Order total

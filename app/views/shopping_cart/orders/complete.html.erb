@@ -1,38 +1,38 @@
-<h2>Order #<%= @order.id %></h2>
+<h2><%= t('.order_title') %> #<%= @order.id %></h2>
 <div>
-  <h3>Confirm</h3>
+  <h3><%= t('.confirm_title') %></h3>
   <div style="float:left; width: 160px;">
-    <h4>Billing address</h4>
+    <h4><%= t('.billing_address_title') %></h4>
     <p><%= "#{@billing_address.firstname} #{@billing_address.lastname}" %></p>
     <p><%= @billing_address.street_address %></p>
     <p><%= "#{@billing_address.city} #{@billing_address.zipcode}" %></p>
     <p><%= @billing_address.country %></p>
-    <p>Phone: <%= @billing_address.phone %></p>
+    <p><%= t('.address_phone') %>: <%= @billing_address.phone %></p>
   </div>
   <div style="float:left; width: 180px;">
-    <h4>Shipping address</h4>
+    <h4><%= t('.shipping_address_title') %></h4>
     <p><%= "#{@shipping_address.firstname} #{@shipping_address.lastname}" %></p>
     <p><%= @shipping_address.street_address %></p>
     <p><%= "#{@shipping_address.city} #{@shipping_address.zipcode}" %></p>
     <p><%= @shipping_address.country %></p>
-    <p>Phone: <%= @shipping_address.phone %></p>
+    <p><%= t('.address_phone') %>: <%= @shipping_address.phone %></p>
   </div>
   <div style="float:left; width: 140px;">
-    <h4>Shipments</h4>
+    <h4><%= t('.shipment_title') %></h4>
     <p><%= @order.delivery.title %></p>
   </div>
   <div style="float:left; width: 160px;">
-    <h4>Credit Card</h4>
+    <h4><%= t('.credit_card_title') %></h4>
     <p>**** **** **** <%= @order.credit_card.number.last(4) %></p>
     <p><%= @order.credit_card.expiration_month %>/<%= @order.credit_card.expiration_year %></p>
   </div>
 </div>
 <table style="clear: both;">
   <tr>
-    <th width="160px">Product name</th>
-    <th width="180px">Product price</th>
-    <th width="140px">Quantity</th>
-    <th width="140px">Item price</th>
+    <th width="160px"><%= t('.product_name') %></th>
+    <th width="180px"><%= t('.product_price') %></th>
+    <th width="140px"><%= t('.qty') %></th>
+    <th width="140px"><%= t('.item_price') %></th>
   </tr>
   <% @order.order_items.each do |order_item| %>
     <tr id= <%= "#{order_item.id}" %> align="center" >
@@ -51,20 +51,20 @@
     </tr>
   <% end %>
   <tr align="right">
-    <th colspan="4" style="padding-right: 34px;">Subtotal: <%= number_to_currency(@order.items_price) %></th>
+    <th colspan="4" style="padding-right: 34px;"><%= t('.subtotal_info') %>: <%= number_to_currency(@order.items_price) %></th>
   </tr>
   <tr align="right">
-    <th colspan="4" style="padding-right: 34px;">Shipping: <%= number_to_currency(@order.delivery.price) %></th>
+    <th colspan="4" style="padding-right: 34px;"><%= t('.shipping_price_info') %>: <%= number_to_currency(@order.delivery.price) %></th>
   </tr>
   <% if @order.discount %>
     <tr align="right">
-      <th colspan="4" style="padding-right: 34px;">Discount: <%= number_to_currency(@order.discount) %> </th>
+      <th colspan="4" style="padding-right: 34px;"><%= t('.discount_info') %>: <%= number_to_currency(@order.discount) %> </th>
     </tr>
   <% end %>
   <tr align="right">
-    <th colspan="4" style="padding-right: 34px;">Order total: <%= number_to_currency(@order.total_price) %></th>
+    <th colspan="4" style="padding-right: 34px;"><%= t('.order_total_info') %>: <%= number_to_currency(@order.total_price) %></th>
   </tr>
   <tr>
-    <td><%= button_to "Go back to store", main_app.root_url, method: :get %></td>
+    <td><%= button_to t('.back_to_store'), main_app.root_url, method: :get %></td>
   </tr>
 </table>

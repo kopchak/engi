@@ -1,7 +1,7 @@
-<h2>Checkout</h2>
-<h3>Address</h3>
+<h2><%= t('.checkout_title') %></h2>
+<h3><%= t('.address_title') %></h3>
 <div style="float:left; width: 200px;">
-  <h4>Billing Address</h4>
+  <h4><%= t('.billing_address_title') %></h4>
   <%= simple_form_for @order, url: checkouts_update_address_path, method: :patch do |m| %>
     <%= m.simple_fields_for :billing_address, include_hidden: false do |f| %>
       <%= f.input :firstname, label: false, placeholder: 'First name' %>
@@ -12,11 +12,11 @@
       <%= f.input :zipcode, label: false, as: :integer, placeholder: 'Zipcode' %>
       <%= f.input :phone, label: false, as: :integer, placeholder: 'Phone number' %>
     <% end %>
-    <%= m.submit 'Save' %>
+    <%= m.submit t('.save') %>
 </div>
 
 <div style="float:left; width: 200px;">
-    <h4>Shipping Address</h4>
+    <h4><%= t('.shipping_address_title') %></h4>
     <%= m.simple_fields_for :shipping_address do |f| %>
       <%= f.text_field :firstname, placeholder: 'First name' %>
       <%= f.text_field :lastname, placeholder: 'Last name' %>
@@ -26,18 +26,18 @@
       <%= f.number_field :zipcode, placeholder: 'Zipcode' %>
       <%= f.number_field :phone, placeholder: 'Phone number' %>
     <% end %>
-    <%= label_tag 'use_billing_address', 'Use billing address' %>
-    <%= check_box_tag 'use_billing_address', true, true %>
+    <%= label_tag :use_billing_address, t('.checkbox_use_bil_addr') %>
+    <%= check_box_tag :use_billing_address, true, true %>
   <% end %>
 </div>
 
 <div style="float:left; width: 200px;">
-  <h4>Order summary</h4>
-  <h5>Item total:<%= number_to_currency(@order.items_price) %></h5>
+  <h4><%= t('.summary_title') %></h4>
+  <h5><%= t('.items_price_info') %><%= number_to_currency(@order.items_price) %></h5>
   <% if @order.discount %>
-    <h5>Discount:<%= number_to_currency(@order.discount.amount) %></h5>
+    <h5><%= t('.discount_info') %><%= number_to_currency(@order.discount.amount) %></h5>
   <% end %>
-  <h5>Order total:<%= number_to_currency(@order.total_price) %></h5>
+  <h5><%= t('.order_total_info') %><%= number_to_currency(@order.total_price) %></h5>
 </div>
 
 
