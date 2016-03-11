@@ -2,6 +2,7 @@ require_dependency "shopping_cart/application_controller"
 
 module ShoppingCart
   class CheckoutsController < ApplicationController
+    before_action :authenticate_user!, only: :confirmation
     before_action :current_order
 
     def edit_address
@@ -10,12 +11,9 @@ module ShoppingCart
     def update_address
       attrs_for_shipping = params[:use_billing_address] ? billing_params : shipping_params
       @order.billing_address.assign_attributes(billing_params)
-      @order.shipping_address.assign_attributes(attrs_for_shiping)
-      if @order.save
-        redirect_to checkouts_choose_delivery_path
-      else
-        redirect_to checkouts_edit_address_path
-      end
+      @order.shipping_address.assign_attributes(attrs_for_shipping)
+      @order.save
+      redirect_to checkouts_choose_delivery_path
     end
 
     def choose_delivery

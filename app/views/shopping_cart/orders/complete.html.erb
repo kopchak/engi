@@ -37,7 +37,7 @@
   <% @order.order_items.each do |order_item| %>
     <tr id= <%= "#{order_item.id}" %> align="center" >
       <td>
-        <%= order_item.product.title %>
+        <%= order_item.product.name %>
       </td>
       <td>
         <%= number_to_currency(order_item.product.price) %>

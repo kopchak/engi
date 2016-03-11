@@ -6,7 +6,7 @@ module ShoppingCart
     before_action :current_order, only: [:add_discount, :clear_cart]
 
     def index
-      orders = Order.where(customer_id: current_user.id, customer_type: current_user.class.name)
+      orders = current_user.orders
       @order_in_progress = current_order
       @orders_in_queue = orders.in_queue
       @orders_in_delivery = orders.in_delivery

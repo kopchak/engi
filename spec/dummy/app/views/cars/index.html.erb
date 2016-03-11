@@ -1,0 +1,10 @@
+<%= link_to 'Books', books_path %>
+<% @cars.each do |car| %>
+  <div id=<%= "#{car.id}" %>>
+    <%= car.name %> <%= number_to_currency(car.price) %>
+    <%= form_for @order_item, url: shopping_cart.order_items_path(car_id: car.id) do |f| %>
+      <%= f.number_field :quantity, value: 1, min: 1, max: 10 %>
+      <%= f.submit 'Add to cart' %>
+    <% end %>
+  </div>
+<% end %>

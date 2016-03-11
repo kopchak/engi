@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.2.5.2"
   s.add_dependency "aasm"
@@ -30,4 +31,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "faker"
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "capybara"
+  s.add_development_dependency "show_me_the_cookies"
 end

@@ -11,5 +11,7 @@ gemspec
 # your gem to rubygems.org.
 
 # To use a debugger
-# gem 'byebug', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
+gem 'coffee-rails', '~> 4.1.0'
+gem 'jquery-rails'
 
