@@ -6,12 +6,12 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require 'spec_helper'
 require 'rspec/rails'
-require 'shoulda-matchers'
 require 'factory_girl_rails'
+require 'shoulda-matchers'
 require 'database_cleaner'
-# require 'faker'
-# require 'aasm'
-# require 'devise'
+require 'faker'
+require 'aasm'
+require 'devise'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -40,7 +40,6 @@ RSpec.configure do |config|
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.include FactoryGirl::Syntax::Methods
-  config.extend ShoppingCart::ControllerSpecHelper, type: :controller
 
   config.use_transactional_fixtures = false
 
@@ -88,12 +87,12 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-# Shoulda::Matchers.configure do |config|
-#   config.integrate do |with|
-#     with.test_framework :rspec
-#     with.library :active_record
-#     with.library :active_model
-#     with.library :action_controller
-#     with.library :rails
-#   end
-# end
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+    with.library :active_model
+    with.library :action_controller
+    with.library :rails
+  end
+end

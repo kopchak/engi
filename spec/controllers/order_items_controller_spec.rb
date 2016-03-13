@@ -1,10 +1,52 @@
 require 'rails_helper'
 
-RSpec.describe ShoppingCart::OrderItemsController do
+RSpec.describe ShoppingCart::OrderItemsController, :type => :controller do
   routes { ShoppingCart::Engine.routes }
+  before do
+    order = create(:shopping_cart_order)
+    cookies[:order_id] = order.id
+  end
 
-  context 'bla' do
-    it 'bla' do
+  context 'GET#index' do
+    it 'render index template' do
+      get :index
+      expect(response).to render_template(:index)
     end
   end
+
+  context 'POST#create' do
+    before do
+      @book = create(:book)
+    end
+
+    it 'redirect to order_items_path' do
+      post :create, order_item: { quantity: 1 }, book_id: @book.id
+      expect(response).to redirect_to(order_items_path)
+    end
+  end
+
+  context 'PATCH#update' do
+    before do
+      @book = create(:book)
+      @order_item = create(:shopping_cart_order_item, product: @book)
+    end
+
+    it 'redirect to order_items_path' do
+      patch :update, id: @order_item.id, order_item: { quantity: 2 }
+      expect(response).to redirect_to(order_items_path)
+    end
+  end
+
+  context 'DELETE#destroy' do
+    before do
+      book = create(:book)
+      @order_item = create(:shopping_cart_order_item, product: book)
+    end
+
+    it 'redirect to order_items_path' do
+      delete :destroy, id: @order_item.id
+      expect(response).to redirect_to(order_items_path)
+    end
+  end
+
 end
