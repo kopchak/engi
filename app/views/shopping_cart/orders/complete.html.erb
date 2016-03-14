@@ -58,7 +58,7 @@
   </tr>
   <% if @order.discount %>
     <tr align="right">
-      <th colspan="4" style="padding-right: 34px;"><%= t('.discount_info') %>: <%= number_to_currency(@order.discount) %> </th>
+      <th colspan="4" style="padding-right: 34px;"><%= t('.discount_info') %>: <%= number_to_currency(@order.discount.amount) %> </th>
     </tr>
   <% end %>
   <tr align="right">

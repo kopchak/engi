@@ -6,12 +6,18 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require 'spec_helper'
 require 'rspec/rails'
+require 'faker'
+# require 'aasm'
+require 'devise'
+require 'show_me_the_cookies'
 require 'factory_girl_rails'
 require 'shoulda-matchers'
 require 'database_cleaner'
-require 'faker'
-require 'aasm'
-require 'devise'
+require 'capybara/rspec'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
+Capybara.default_host = 'http://localhost:3000'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -38,6 +44,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.include ShowMeTheCookies, :type => :feature
 
   config.include FactoryGirl::Syntax::Methods
 

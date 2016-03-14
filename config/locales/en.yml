@@ -13,9 +13,14 @@ en:
         delete_item: X
         order_total: "Order total: "
         discount: "Discount: "
-        empty_cart: Clear cart
+        clear_cart: Clear cart
         update: UPDATE
         checkout: Checkout
+        empty_cart: Your cart is empty
+      product:
+        add: Product has been added to cart
+        update: Product has been updated
+        delete: Product has been removed
     checkouts:
       edit_address:
         checkout_title: Checkout
@@ -73,6 +78,9 @@ en:
         order_total_info: "Order total: "
         place_order: Place order
     orders:
+      add_discount_succ: Discount has been added
+      add_discount_err: Coupon not found
+      clear_cart: Products has been removed from cart
       complete:
         order_title: Order
         confirm_title: Confirm
@@ -119,3 +127,4 @@ en:
         shipping_price_info: Shipping
         discount_info: Discount
         order_total_info: Order total
+

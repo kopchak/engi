@@ -7,13 +7,16 @@ module ShoppingCart
     before_action :current_order
 
     def index
-      @order_items = @order.order_items
-      @order_items_price = @order.items_price
-      @discount = Discount.new
+      if @order
+        @order_items = @order.order_items
+        @order_items_price = @order.items_price
+        @discount = Discount.new
+      end
     end
 
     def create
       @order.add_product(@product, params[:order_item][:quantity].to_i)
+      flash.notice = t('shopping_cart.order_items.product.add')
       redirect_to order_items_path
     end
 
@@ -21,12 +24,14 @@ module ShoppingCart
       order_item = OrderItem.find(params[:id])
       order_item.calc_price(params[:order_item][:quantity].to_i)
       order_item.update(order_item_params)
+      flash.notice = t('shopping_cart.order_items.product.update')
       redirect_to order_items_path
     end
 
     def destroy
       order_item = OrderItem.find(params[:id])
       order_item.destroy
+      flash.notice = t('shopping_cart.order_items.product.delete')
       redirect_to order_items_path
     end
 

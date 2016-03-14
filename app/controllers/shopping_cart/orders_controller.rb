@@ -25,13 +25,18 @@ module ShoppingCart
     end
 
     def add_discount
-      coupon = Discount.find_by(discount_params)
-      @order.add_discount(coupon) if coupon
+      if coupon = Discount.find_by(discount_params)
+        @order.add_discount(coupon)
+        flash.notice = t('shopping_cart.orders.add_discount_succ')
+      else
+        flash.notice = t('shopping_cart.orders.add_discount_err')
+      end
       redirect_to order_items_path
     end
 
     def clear_cart
       @order.order_items.destroy_all
+      flash.notice = t('shopping_cart.orders.clear_cart')
       redirect_to order_items_path
     end
 

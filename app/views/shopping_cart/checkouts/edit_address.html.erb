@@ -3,7 +3,7 @@
 <div style="float:left; width: 200px;">
   <h4><%= t('.billing_address_title') %></h4>
   <%= simple_form_for @order, url: checkouts_update_address_path, method: :patch do |m| %>
-    <%= m.simple_fields_for :billing_address, include_hidden: false do |f| %>
+    <%= m.simple_fields_for :billing_address do |f| %>
       <%= f.input :firstname, label: false, placeholder: 'First name' %>
       <%= f.input :lastname, label: false, placeholder: 'Last name' %>
       <%= f.input :street_address, label: false, placeholder: 'Street address' %>

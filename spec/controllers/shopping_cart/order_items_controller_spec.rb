@@ -23,6 +23,11 @@ RSpec.describe ShoppingCart::OrderItemsController, :type => :controller do
       post :create, order_item: { quantity: 1 }, book_id: @book.id
       expect(response).to redirect_to(order_items_path)
     end
+
+    it 'get added message' do
+      post :create, order_item: { quantity: 1 }, book_id: @book.id
+      expect(flash.notice).to eq(I18n.t('shopping_cart.order_items.product.add'))
+    end
   end
 
   context 'PATCH#update' do
@@ -35,6 +40,11 @@ RSpec.describe ShoppingCart::OrderItemsController, :type => :controller do
       patch :update, id: @order_item.id, order_item: { quantity: 2 }
       expect(response).to redirect_to(order_items_path)
     end
+
+    it 'get updated message' do
+      patch :update, id: @order_item.id, order_item: { quantity: 2 }
+      expect(flash.notice).to eq(I18n.t('shopping_cart.order_items.product.update'))
+    end
   end
 
   context 'DELETE#destroy' do
@@ -46,6 +56,11 @@ RSpec.describe ShoppingCart::OrderItemsController, :type => :controller do
     it 'redirect to order_items_path' do
       delete :destroy, id: @order_item.id
       expect(response).to redirect_to(order_items_path)
+    end
+
+    it 'get delete message' do
+      delete :destroy, id: @order_item.id
+      expect(flash.notice).to eq(I18n.t('shopping_cart.order_items.product.delete'))
     end
   end
 
