@@ -10,10 +10,8 @@ Add this line to your application gemfile
   gem 'shopping_cart', git: 'https://github.com/kopchak/engi.git'
 ```
 and then execute:
+> $ bundle install
 
-```ruby
-$ bundle install
-```
 
 Edit your `app/controller/application_controller.rb` and add a current_user method, unless you are using the Devise gem.
 
@@ -98,21 +96,17 @@ Add a link to the orders history:
 ### Controllers
 
 You can generate controllers for customization to `app/controllers/shopping_cart`:
-```ruby
-$ rails generate shopping_cart:controllers
-```
+> $ rails generate shopping_cart:controllers
+
 
 ### Views
 
 You can generate views for customization to `app/views/shopping_cart`:
-```ruby
-$ rails generate shopping_cart:views
-```
+> $ rails generate shopping_cart:views
+
 
 
 ## Tests
-```
-$ bundle exec rspec
-```
+> $ bundle exec rspec
 
 This project rocks and uses MIT-LICENSE.
