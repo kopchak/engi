@@ -11,7 +11,7 @@ module ShoppingCart
     end
 
     def copy_locale
-      copy_file "../../../config/locales/en.yml", "config/locales/shopping_cart.en.yml"
+      copy_file "../../../../config/locales/en.yml", "config/locales/shopping_cart.en.yml"
     end
   end
 end
