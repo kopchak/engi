@@ -58,11 +58,9 @@ Add to your product models:
   end
 ```
 
-Also need to create types of delivery:
+Execute in console your rails application (will be created types of delivery):
 ```ruby
-  ShoppingCart::Delivery.create(
-    [{title: 'UPS Ground', price: 5}, {title: 'UPS Two Day', price: 10}, {title: 'UPS One Day', price: 15}]
-  )
+  ShoppingCart::Engine.load_seed
 ```
 
 ###Helpers
