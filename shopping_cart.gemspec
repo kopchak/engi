@@ -33,4 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "capybara"
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency "show_me_the_cookies"
+  s.add_development_dependency 'coffee-rails', '~> 4.1.0'
+  s.add_development_dependency 'jquery-rails'
+  s.add_development_dependency 'byebug'
 end
